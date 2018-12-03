@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VueJS - 20. Listening to Keyboard Events</title>
+	<link rel="stylesheet" href="">
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<button v-on:click="increase(4)">Pulsame</button>
+		<p> {{counter}} </p>
+		<p v-on:mousemove="updateCoordinates"> Coordenadas de pantalla: {{x}}px, {{y}}py
+			- <span v-on:mousemove="dummy">PUNTO CIEGO</span></p>
+			<!-- se muestra una ventana emergente al pulsar espacio o tecla enter en el input box -->
+		<input type="text" v-on:keyup.enter.space="alertMe">
+	</div>
+	<script>
+	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
+		new Vue({
+			el: '#app',
+			data: {
+				counter:0, x:0, y:0
+			},
+			methods: {
+				increase: function(step){
+					this.counter+=step;
+				},
+				updateCoordinates: function(event){
+					this.x = event.clientX;
+					this.y = event.clientY;
+				},
+				dummy: function(event){
+					event.stopPropagation();
+				},
+				alertMe: function(){
+					alert('Alerta!');
+				}
+			}
+		})
+	</script>
+</body>
+</html>

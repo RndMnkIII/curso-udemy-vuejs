@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="">
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="exercise">
+       <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+        <!-- My Solution: bind data object attributes name and age to the html template elements -->
+        <p>VueJS is pretty cool - {{ name }} ({{ age }})</p>
+        <!-- 2) Output your age, multiplied by 3 -->
+        <!-- My Solution: I use a JavaScript expression in the template element itself. -->
+        <p> {{ age * 3 }} </p>
+        <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+        <!-- My Solution: declare funciont in methods object that return a 0-1 float value. Call
+            this function from the html template. -->
+        <p> {{ rndFlt() }} </p>
+        <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+        <!-- My Solution: I use the v-bind directive with the src attribute to decode imglink as an url -->
+        <div>
+            <img style="width:100px;height:100px" v-bind:src="imglink">
+        </div>
+        <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+        <!-- My Solution: the only solution to this using Vue is to use the v-model directive -->
+        <div>
+            <input type="text"  v-model="name">
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#exercise',
+        data:{
+            name:'Javier',
+            age:41,
+            imglink: 'http://s3.amazonaws.com/makexyz/cache/fd/e4/fde45153bfcb1f008d49588585b0336a.jpg'
+        },
+        methods:{
+            rndFlt: function(){
+                return Math.random();
+            }
+        } 
+    });
+</script>
+</html>
